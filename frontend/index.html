@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174f4a">
+  <title>Customer Churn Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">CI</div>
+      <p class="sidebar-kicker">Retention intelligence</p>
+      <h2>Customer Churn<br>Prediction</h2>
+      <p class="sidebar-copy">A pre-trained Random Forest workspace for finding retention opportunities.</p>
+      <div class="sidebar-divider"></div>
+      <nav class="side-nav" aria-label="Dashboard sections">
+        <a class="active" href="#overview">Overview</a>
+        <a href="#insights">Risk analysis</a>
+        <a href="#customers">Customer analysis</a>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="status-led"></span>
+        <span>Model service ready</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="hero" id="overview">
+        <div>
+          <p class="eyebrow">Customer intelligence platform</p>
+          <h1>Predict churn.<br><em>Protect relationships.</em></h1>
+          <p class="hero-copy">Predict customer churn, identify high-risk customers, and discover the factors driving retention risk.</p>
+          <div class="hero-tags"><span>Random Forest</span><span>Explainable predictions</span><span>Action-ready insights</span></div>
+        </div>
+        <div class="hero-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+      </header>
+
+      <section class="upload-card" aria-labelledby="upload-title">
+        <div class="upload-copy">
+          <span class="step-number">01</span>
+          <div><h2 id="upload-title">Upload customer data</h2><p>Upload a clean CSV to generate churn predictions, risk analysis, explanations, and recommendations.</p></div>
+        </div>
+        <label class="file-drop" for="csv-file">
+          <span class="upload-icon">+</span>
+          <span><strong>Choose a customer CSV</strong><small>CSV files only, with the trained model features</small></span>
+          <input id="csv-file" type="file" accept=".csv,text/csv">
+        </label>
+        <div id="file-status" class="file-status" aria-live="polite">No file selected</div>
+      </section>
+
+      <div id="alert" class="alert" role="alert" hidden></div>
+      <div id="loading" class="loading" hidden><span class="spinner"></span><span>Scoring customers and preparing explanations...</span></div>
+
+      <section id="dashboard" hidden>
+        <div class="section-heading"><div><p class="eyebrow">Portfolio overview</p><h2>Know your exposure</h2></div><span id="processed-badge" class="processed-badge">Processed</span></div>
+        <div id="kpi-grid" class="kpi-grid"></div>
+
+        <div id="insights" class="section-heading with-space"><div><p class="eyebrow">Risk analysis</p><h2>Signals worth acting on</h2></div></div>
+        <div id="business-insights" class="insight-grid"></div>
+
+        <div class="section-heading with-space"><div><p class="eyebrow">Churn insights</p><h2>See the portfolio clearly</h2><p class="section-copy">Four views turn model output into a practical retention briefing.</p></div></div>
+        <div class="chart-grid">
+          <article class="chart-card"><p class="chart-kicker">Portfolio signal</p><h3>Churn Distribution</h3><p>Predicted customers likely to leave versus remain.</p><div class="chart-wrap"><canvas id="churn-chart"></canvas></div></article>
+          <article class="chart-card"><p class="chart-kicker">Risk segmentation</p><h3>Risk Distribution</h3><p>A view of the portfolio across the three risk bands.</p><div class="chart-wrap"><canvas id="risk-chart"></canvas></div></article>
+          <article class="chart-card"><p class="chart-kicker">Contract signal</p><h3>Churn by Contract</h3><p>Compare predicted churn rates across contract groups.</p><div class="chart-wrap"><canvas id="contract-chart"></canvas></div></article>
+          <article class="chart-card"><p class="chart-kicker">Model signal</p><h3>Feature Importance</h3><p>The strongest encoded features used by the Random Forest.</p><div class="chart-wrap tall"><canvas id="importance-chart"></canvas></div></article>
+        </div>
+
+        <section id="customers" class="customer-section">
+          <div class="section-heading with-space"><div><p class="eyebrow">Customer analysis</p><h2>Move from signal to action</h2><p class="section-copy">Filter the scored portfolio, then open one customer for a deeper retention brief.</p></div></div>
+          <div class="customer-tools"><label for="risk-filter">Filter by risk<select id="risk-filter" multiple><option value="Low Risk" selected>Low Risk</option><option value="Medium Risk" selected>Medium Risk</option><option value="High Risk" selected>High Risk</option></select></label><span id="table-status"></span><button id="download-button" class="button secondary" type="button">Download CSV</button></div>
+          <div class="table-frame"><table><thead><tr><th>Customer ID</th><th>Prediction</th><th>Probability</th><th>Risk</th></tr></thead><tbody id="results-body"></tbody></table></div>
+          <div class="customer-picker"><label for="customer-select">Select a customer</label><select id="customer-select"></select></div>
+          <div id="customer-detail"></div>
+        </section>
+      </section>
+
+      <section id="empty-state" class="empty-state"><span class="empty-number">02</span><h2>Your retention briefing starts here.</h2><p>Upload a scored customer file above to reveal portfolio risk, model signals, and customer-level actions.</p></section>
+      <footer><span>Customer Churn Intelligence</span><span>Vercel frontend &middot; Railway ML API</span></footer>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

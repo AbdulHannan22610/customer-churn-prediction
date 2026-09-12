@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Streamlit
+.streamlit/
+
+# Local runtime files
+*.log
